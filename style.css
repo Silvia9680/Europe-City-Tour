@@ -21,7 +21,7 @@
 
 .logo {
     font-size: 30px;
-    color: #fff;
+    color: #52a6d6;
     text-decoration: none;
     font-weight: 700;
 }
@@ -37,7 +37,7 @@
     width: 40px;
     height: 40px;
     background: transparent;
-    border: 2px solid #fff;
+    border: 2px solid #52a6d6;
     border-radius: 6px;
     text-decoration: none;
     margin-right: 10px;
@@ -50,7 +50,7 @@
 
 .social-media a i {
     font-size: 20px;
-    color: #fff;
+    color: #52a6d6;
     transition: .5s;
 }
 
@@ -60,7 +60,7 @@
 
 .navbar a {
     font-size: 18px;
-    color: #fff;
+    color: #52a6d6;
     text-decoration: none;
     font-weight: 500;
     margin-left: 30px;
@@ -71,6 +71,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .slider .slide {
@@ -85,21 +86,35 @@
     height: 100%;
     object-fit: cover;
     pointer-events: none;
+    opacity: 0;
+    transition: .3 ease;
 }
 
-.left-info {
+.slide.active img {
+    opacity: 1;
+}
+
+.slide .left-info {
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
-   
+    transform: translateX(-100%);   
+    transition: 0s;
 }
+
+.slide.active .left-info {
+    transform: translateX(0);
+    z-index: 1;
+    transition: .5s ease;
+}
+
 .left-info .penetrate-blur {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .5);
     filter: blur(20px);
     display: flex;
     justify-content: flex-end;
@@ -110,18 +125,23 @@
     mask-clip: text, padding-box;
     -webkit-mask-composite: xor;
     mask-composite: xor;
+    padding-right: 20px ;
   }
+
 .penetrate-blur h1 {
     font-size: 250px;
     text-shadow: 0 0 10px rgba(255, 255, 255, .8);
 }
 
-
+.slide:nth-child(1) .penetrate-blur h1,
+.slide:nth-child(4) .penetrate-blur h1 {
+    margin-right: -10px;
+}
 .left-info .content {
     position: absolute;
     bottom: 8%;
     left: 10%;
-    color: #fff;
+    color: #064366;
 }
 
 .content h3 {
@@ -160,6 +180,14 @@
     height: 100%;
     display: flex;
    align-items: center;
+   transform: translateX(100%);
+   transition: 0s;
+}
+
+.slide.active .right-info {
+    transform: translateX(0);
+    z-index: 1;
+    transition: .5s ease;
 }
 
 .right-info h1 {
@@ -178,7 +206,12 @@
     0 5px 10px rgba(0, 0, 0, .25),
     0 10px 10px rgba(0, 0, 0, .2),
     0 20px 20px rgba(0, 0, 0, .15);
-    
+}
+
+.slide:nth-child(2) .right-info h1 
+.slide:nth-child(4) .right-info h1 {
+    margin-left: 10px;
+
 }
 
 .right-info h3 {
